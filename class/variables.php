@@ -25,6 +25,7 @@
 	   echo "<p>hours worked = $hours(hrs)</p>";
 	   echo '<p>pay rate =$$payrate</p>';
 	   echo "<p>pay check =$ ".$grosspay.'</p>';
+	   /*jkughy*/
 	   
 	   
 	   
