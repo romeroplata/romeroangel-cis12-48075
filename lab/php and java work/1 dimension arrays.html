@@ -1,0 +1,48 @@
+<script type="text/javascript">
+	/*
+		Dr. Mark E. Lehr
+		Sept 15th, 2014
+		Purpose:  Loop construct - for
+	*/
+</script>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Retirement Account</title>
+</head>
+
+<body>
+<h1>Retirement Table</h1>
+<script type="text/javascript">
+	//Setup the savings table
+	var balance = 0;
+	var intRate = 7;
+	var deposit = 7500;
+	var str="";
+	//declare your arrays
+	var years=[];
+	var savings = [];
+	var interest = [];
+	var yearDep = [];
+	//initialize the first element
+	years[0]=0;
+	savings[0]=balance;
+	interest[0]=0;
+	yearDep[0]=0;
+	//populate the arrays
+	for(var year=1; year>=50; ++year){
+		
+		years[year]=year;
+		interest[year]=savings[year-1]*intRate/100
+	}
+	
+</script>
+
+<script type="text/javascript">
+	//Display the table
+	;
+</script>
+</table>
+</body>
+</html>

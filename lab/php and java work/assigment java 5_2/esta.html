@@ -1,0 +1,114 @@
+<script type="text/javascript">
+	/*
+	angel romero
+	10/11/2014
+	pay table two dime arrays jave
+	*/
+</script>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Retirement Account</title>
+<script type="text/javascript" src="getForm.js"></script>
+<script>var url=document.location.href;
+	$_GET=getForm(url);
+	</script>
+</head>
+
+<body>
+
+<h1>Pay Table</h1>
+<script type="text/javascript">
+
+
+
+	//Setup the savings table
+	var netpay = 0;
+	var taxes = parseInt($_GET["tax"]);
+	var hours = 0;
+	var payRate=Number($_GET["PayRate"]);
+	
+	var str="";
+	var doPay= parseInt($_GET["doblePay"]);
+	var triPay= parseInt($_GET["triplePay"]);
+	//Declare your table
+	var payTable=[];
+	var cols=5;
+	for(var col=0;col<cols;col++){
+		payTable[col]=[]
+	}
+	
+	//Initialize the first element
+	payTable[0][0]=0;
+	payTable[1][0]=0;
+	payTable[2][0]=payRate;
+	payTable[3][0]=taxes;
+	payTable[4][0]=0;
+	
+	//Populate the arrays
+	for(var year=1;year<=20;++year){
+		payTable[0][year]=year;
+		//Calculate the balance
+		//balance=balance*(1+intRate/100);
+		payTable[1][year]=payTable[0][year]*payRate;
+		payTable[2][year]=payRate;
+		payTable[3][year]=payTable[1][year]*taxes/100;
+		payTable[4][year]=payTable[1][year]-payTable[3][year];	
+	}
+		for(var year=21;year<=40;++year){
+		payTable[0][year]=year;
+		//Calculate the balance
+		//balance=balance*(1+intRate/100);
+		payTable[1][year]=payTable[0][year]*payRate+((payTable[0][year]-doPay)*payRate);
+		payTable[2][year]=payRate;
+		payTable[3][year]=payTable[1][year]*taxes/100;
+		payTable[4][year]=payTable[1][year]-payTable[3][year];	
+	}
+		for(var year=41;year<=72;++year){
+		payTable[0][year]=year;
+		//Calculate the balance
+		//balance=balance*(1+intRate/100);
+		payTable[1][year]=payTable[0][year]*payRate+((payTable[0][year]-doPay)*payRate)+((payTable[0][year]-triPay)*payRate);
+		payTable[2][year]=payRate;
+		payTable[3][year]=payTable[1][year]*taxes/100;
+		payTable[4][year]=payTable[1][year]-payTable[3][year];	
+	}
+	//Output the initial conditions
+	document.write("<p>Initial Balance = $"+balance+"</p>");
+	document.write("<p>Interest Rate   = "+intRate+"%</p>");
+	document.write("<p>Yearly Deposit   = $"+deposit+"</p>");
+</script>
+<table width="600" border="1">
+  <tr>
+    <th>Hours</th>
+    <th>Gross Pay $</th>
+    <th>Pay Rate $</th>
+    <th>taxes $</th>
+    <th>Net Pay $</th>
+  </tr>
+<script type="text/javascript">
+	//Display the table
+	for(var year=1;year<=72;++year){
+		str+="<tr>";
+		str+=("<td>"+payTable[0][year].toFixed(0)+"</td>");
+		for(var col=1;col<cols;col++){
+			str+=("<td>"+payTable[col][year].toFixed(2)+"</td>");
+		}
+		str+="</tr>";
+	}
+	document.write(str);
+	document.write("<p>Number of Rows = "+payTable[0].length+"</p>");
+	document.write("<p>Number of Rows = "+payTable[1].length+"</p>");
+	document.write("<p>Number of Rows = "+payTable[2].length+"</p>");
+	document.write("<p>Number of Rows = "+payTable[3].length+"</p>");
+	document.write("<p>Number of Columns = "+payTable.length+"</p>");
+	document.write("<p>Type of Rows = "+typeof(payTable[3])+"</p>");
+	document.write("<p>Type of Columns = "+typeof(payTable)+"</p>");
+	
+	
+
+</script>
+</table>
+</body>
+</html>
